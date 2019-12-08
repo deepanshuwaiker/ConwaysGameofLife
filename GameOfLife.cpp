@@ -1,4 +1,7 @@
-#include "GameOfLife.h"
+#include "GameOfLife.h"                                     // game of life class file
+#include <windows.h>
+#include <time.h>
+
 using namespace std;
 
 
@@ -10,7 +13,7 @@ GameofLife::GameofLife(int row,int col,vector<vector<int> >&grid,vector<vector<i
 	this->tempGrid=tempGrid;
 }
 
-int GameofLife::getNeighbours(int row,int col,vector<vector<int> >&grid,int i,int j)
+int GameofLife::getNeighbours(int row,int col,vector<vector<int> >&grid,int i,int j)    // for calculating neighbours
 {
 			if(i==0 && j==0)
 			return int(grid[0][1] + grid[1][0] +grid[1][1]);
@@ -41,7 +44,7 @@ int GameofLife::getNeighbours(int row,int col,vector<vector<int> >&grid,int i,in
 		    
 }
 
-void GameofLife::copyGrid(int row,int col,vector<vector<int> > &grid1,vector<vector<int> > &grid2)
+void GameofLife::copyGrid(int row,int col,vector<vector<int> > &grid1,vector<vector<int> > &grid2)  // coping the current in previous
 {
 	for (int i = 0; i < row; i++)
 	{
@@ -53,7 +56,7 @@ void GameofLife::copyGrid(int row,int col,vector<vector<int> > &grid1,vector<vec
 }
 
 
-void GameofLife::nextGeneration(int row,int col,vector<vector<int> > &grid)
+void GameofLife::nextGeneration(int row,int col,vector<vector<int> > &grid)   // for calculating the next gen grid
 {
 	vector<vector<int> > tempGrid;
 		
@@ -95,7 +98,7 @@ void GameofLife::nextGeneration(int row,int col,vector<vector<int> > &grid)
 	
 }
 
-bool GameofLife::comp(int row,int col,vector<vector<int> > &grid,vector<vector<int> > &temp)
+bool GameofLife::comp(int row,int col,vector<vector<int> > &grid,vector<vector<int> > &temp)  // for comparing the 2 grids
 {
 	for(int i=0;i<row;i++)
 	{
@@ -108,21 +111,24 @@ bool GameofLife::comp(int row,int col,vector<vector<int> > &grid,vector<vector<i
 	return true;
 }
 
-void GameofLife::displayGrid(int row,int col,vector<vector<int> > &grid) 
+void GameofLife::displayGrid(int row,int col,vector<vector<int> > &grid)  // for displaying the grid
 {
-	cout<<endl;
-	for (int i = 0; i < row; i++) 
-	{
-		for (int j =0; j < col; j++)
-		{
+	system("cls");
+	cout << "\n Simulation :\n\n";
+	for (int i = 0; i < row; i++) {
+		for (int j = 0; j < col; j++) {
 			if (grid[i][j] == 1)
-				cout << " x ";
+			{
+				cout << " x ";  //alive is represented by x
+			}
 			else
-				cout << " . ";
+			{
+				cout << "   ";  //dead by blank
+			}
 		}
-		cout << endl;
+		cout << "\n";
 	}
-	cout<<endl;
+	Sleep(2);                  //delay in milliseconds
 }
 
 

@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-#include "GameOflife.cpp"
+#include "GameOflife.cpp"                                  // game of life cpp file where all functions are declared
 
 
 int main()
@@ -28,7 +28,7 @@ int main()
 	cout<<endl;
 	
 	vector<vector<int> > grid,original;
-	vector<vector<int> > tempGrid(row,vector<int> (col,0));
+	vector<vector<int> > tempGrid(row,vector<int> (col,0));   //intializing all cells with 0 value
 	
 	GameofLife gol=GameofLife(row,col,grid,tempGrid);
 		
@@ -38,7 +38,7 @@ int main()
 		case 1: 
 			
 	     	cout<<"Enter the matrix :"<<endl;
-			for(int i=0;i<row;i++)
+			for(int i=0;i<row;i++)                           // for contructing custom matrix
 			{
 			    vector<int> vec;
 			    
@@ -58,7 +58,7 @@ int main()
 			
 		    srand(time(0));
 		
-			for (int p = 0; p < row; p++)
+			for (int p = 0; p < row; p++)                  // for constructing random matrix
 		    {
 		    	 vector<int> vec;
 		    	
@@ -85,20 +85,19 @@ int main()
 
     int flag=0;
     
-    while(1)
+    while(1)                                              // infinite loop
 	{
-		if(gol.comp(row,col,grid,tempGrid))
+		if(gol.comp(row,col,grid,tempGrid))              // loop breaks when previous and current grids are same
 		{
 			flag=1;
 			break;
 		}
 		
 		gol.displayGrid(row,col,grid);
-		cout<<"NEXT GENERATION\n";	
 		gol.copyGrid(row,col,grid,tempGrid);
 		gol.nextGeneration(row,col,grid);	
 		
-		if(gol.comp(row,col,grid,original))
+		if(gol.comp(row,col,grid,original))             // loop breaks when original and current grids are same
 		{
 			flag=1;
 			break;
@@ -106,7 +105,7 @@ int main()
 	}
 	
 	if(flag==1)
-	gol.displayGrid(row,col,grid);	
+	gol.displayGrid(row,col,grid);	                   // for displayng final generation
 	
 	cout<<"\nperform another operaton(y/n) :";	
 	cin>>enter;
